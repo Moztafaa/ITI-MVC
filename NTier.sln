@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTier.Presentation", "NTier.Presentation\NTier.Presentation.csproj", "{BDE93B76-76A3-40BF-92FC-2362FCB4B4BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTier.DAL", "NTier.DAL\NTier.DAL.csproj", "{274D5BF2-8240-45BC-B4B8-E1AB8228BFE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTier.BLL", "NTier.BLL\NTier.BLL.csproj", "{1F7D7835-AEC3-4C7B-8332-D3CC4CD1758C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDE93B76-76A3-40BF-92FC-2362FCB4B4BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE93B76-76A3-40BF-92FC-2362FCB4B4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE93B76-76A3-40BF-92FC-2362FCB4B4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE93B76-76A3-40BF-92FC-2362FCB4B4BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{274D5BF2-8240-45BC-B4B8-E1AB8228BFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274D5BF2-8240-45BC-B4B8-E1AB8228BFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274D5BF2-8240-45BC-B4B8-E1AB8228BFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274D5BF2-8240-45BC-B4B8-E1AB8228BFE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F7D7835-AEC3-4C7B-8332-D3CC4CD1758C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F7D7835-AEC3-4C7B-8332-D3CC4CD1758C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F7D7835-AEC3-4C7B-8332-D3CC4CD1758C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F7D7835-AEC3-4C7B-8332-D3CC4CD1758C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

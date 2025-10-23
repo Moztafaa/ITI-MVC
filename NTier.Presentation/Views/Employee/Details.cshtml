@@ -1,0 +1,75 @@
+@model NTier.BLL.ViewModels.EmployeeVM
+
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>Employee Details</h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-info">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Employee ID:</strong>
+                </div>
+                <div class="col-md-8">
+                    <span>@Model.EmployeeId</span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Name:</strong>
+                </div>
+                <div class="col-md-8">
+                    <span>@Model.Name</span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Gender:</strong>
+                </div>
+                <div class="col-md-8">
+                    <span>@Model.Gender</span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Salary:</strong>
+                </div>
+                <div class="col-md-8">
+                    <span>@Model.Salary.ToString("C")</span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Address:</strong>
+                </div>
+                <div class="col-md-8">
+                    <span>@Model.Address</span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Department:</strong>
+                </div>
+                <div class="col-md-8">
+                    <span>@(Model.Department?.Name ?? "N/A")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

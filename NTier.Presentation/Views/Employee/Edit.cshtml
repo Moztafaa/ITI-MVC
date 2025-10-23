@@ -1,0 +1,53 @@
+@model NTier.BLL.ViewModels.EditEmployeeVM
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>Edit Employee</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="EditEmployee" method="post" class="needs-validation">
+                <input type="hidden" asp-for="EmployeeId"/>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Employee Name:</label>
+                    <input asp-for="Name" type="text" class="form-control" placeholder="Enter employee name"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DepartmentId" class="form-label">Department:</label>
+                    <select asp-for="DepartmentId" class="form-select">
+                        <option value="">-- Select Department --</option>
+                        <option value="1">IT</option>
+                        <option value="2">HR</option>
+                        <option value="3">Sales</option>
+                        <option value="4">Finance</option>
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+                @* add address  *@
+                @* <div class="mb-3"> *@
+                @*     <label asp-for="Address" class="form-label">Address:</label> *@
+                @*     <textarea asp-for="Address" class="form-control" placeholder="Enter address" rows="3"></textarea> *@
+                @*     <span asp-validation-for="Address" class="text-danger"></span> *@
+                @* </div> *@
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button type="submit" class="btn btn-primary">Update Employee</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+}
