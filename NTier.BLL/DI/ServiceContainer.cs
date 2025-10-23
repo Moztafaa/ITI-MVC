@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using NTier.BLL.AutoMapper;
 using NTier.BLL.MappingImplementation;
 using NTier.BLL.MappingInterface;
 using NTier.BLL.ServiceImplementation;
@@ -16,6 +17,7 @@ public static class ServiceContainer
         // Register services
         services.AddScoped<IEmployeeService, EmployeeService>();
 
+        services.AddAutoMapper(typeof(EmployeeMappingProfile));
 
         return services;
     }

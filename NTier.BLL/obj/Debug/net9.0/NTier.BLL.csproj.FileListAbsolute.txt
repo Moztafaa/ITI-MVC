@@ -1,0 +1,16 @@
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/bin/Debug/net9.0/NTier.BLL.deps.json
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/bin/Debug/net9.0/NTier.BLL.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/bin/Debug/net9.0/NTier.BLL.pdb
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/bin/Debug/net9.0/NTier.DAL.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/bin/Debug/net9.0/NTier.DAL.pdb
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/NTier.BLL.csproj.AssemblyReference.cache
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/NTier.BLL.GeneratedMSBuildEditorConfig.editorconfig
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/NTier.BLL.AssemblyInfoInputs.cache
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/NTier.BLL.AssemblyInfo.cs
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/NTier.BLL.csproj.CoreCompileInputs.cache
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/NTier.BLL.sourcelink.json
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/NTier.BLL.csproj.Up2Date
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/NTier.BLL.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/refint/NTier.BLL.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/NTier.BLL.pdb
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.BLL/obj/Debug/net9.0/ref/NTier.BLL.dll
