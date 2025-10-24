@@ -236,3 +236,11 @@
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/NTier.Presentation.pdb
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/NTier.Presentation.genruntimeconfig.cache
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/ref/NTier.Presentation.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/NTier.Presentation.csproj.GenerateResource.cache
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/bin/Debug/net9.0/ar-EG/NTier.Presentation.resources.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/bin/Debug/net9.0/Microsoft.Extensions.Localization.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/bin/Debug/net9.0/Microsoft.Extensions.Localization.Abstractions.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/NTier.Presentation.Resources.SharedResource.resources
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/NTier.Presentation.Resources.SharedResource.ar-EG.resources
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/ar-EG/NTier.Presentation.resources.cs
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/ar-EG/NTier.Presentation.resources.dll

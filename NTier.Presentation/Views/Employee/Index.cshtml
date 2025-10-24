@@ -10,7 +10,7 @@
             <h2>Employee List</h2>
         </div>
         <div class="col-md-4 text-end">
-            <a asp-action="Create" class="btn btn-primary">Add New Employee</a>
+            <a asp-action="Create" class="btn btn-primary">@SharedLocalizer["Add New Employee"]</a>
         </div>
     </div>
 
@@ -21,12 +21,12 @@
                 <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>Salary</th>
-                    <th>Address</th>
-                    <th>Department</th>
-                    <th>Actions</th>
+                    <th>@SharedLocalizer["Name"]</th>
+                    <th>@SharedLocalizer["Gender"]</th>
+                    <th>@SharedLocalizer["Salary"]</th>
+                    <th>@SharedLocalizer["Address"]</th>
+                    <th>@SharedLocalizer["Department"]</th>
+                    <th>@SharedLocalizer["Actions"]</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,11 +41,11 @@
                         <td>@(employee.Department?.Name ?? "N/A")</td>
                         <td>
                             <a asp-action="Details" asp-route-id="@employee.EmployeeId"
-                               class="btn btn-sm btn-secondary">Details</a>
+                               class="btn btn-sm btn-secondary">@SharedLocalizer["Details"]</a>
                             <a asp-action="Edit" asp-route-id="@employee.EmployeeId"
-                               class="btn btn-sm btn-info">Edit</a>
+                               class="btn btn-sm btn-info">@SharedLocalizer["Edit"]</a>
                             <a asp-action="DeleteEmployee" asp-route-id="@employee.EmployeeId"
-                               class="btn btn-sm btn-danger">Delete</a>
+                               class="btn btn-sm btn-danger">@SharedLocalizer["Delete"]</a>
                         </td>
                     </tr>
                 }

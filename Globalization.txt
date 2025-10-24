@@ -1,0 +1,115 @@
+Fixed Text
+
+A ) Create Resource File To Save Your Text In Folder Language In PL
+
+.Create File with Type Resource File ==> File name ==>SharedResource
+
+B ) At Program Add All Needed Configuration Needs To Localization
+
+==> In Configuration Services
+
+- 1
+after AddControllersWithViews() add
+.AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+.AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                        factory.Create(typeof(SharedResource));
+                }); 
+
+
+  
+
+==> In Configure // Middel Ware
+
+- 2 
+
+            var supportedCultures = new[] {
+                      new CultureInfo("ar-EG"),
+                      new CultureInfo("en-US"),
+                };
+-3
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures,
+                RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+                new QueryStringRequestCultureProvider(),
+                new CookieRequestCultureProvider()
+                }
+            });
+
+
+.Add Clas with the same fileName and add File Share .ar-EG
+
+C ) At View_Imports Add :
+ 
+@using Microsoft.Extensions.Localization
+@using WebApplication7.Resource
+
+@inject IStringLocalizer<SharedResource> SharedLocalizer
+
+
+
+D ) Replace Your Text By 
+@SharedLocalizer["Key"]
+
+
+
+
+E) At Your Controller
+
+        [HttpGet]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
+        }
+
+
+
+F ) In Your Layout
+
+                                <a class="dropdown-item d-flex justify-content-between"
+                                   href="@Url.Action("SetLanguage", "Home", new {
+                                                  culture = "en-US",
+                                                  returnUrl = Context.Request.Path + Context.Request.QueryString
+                                              })">
+                                    <img src="~/lib/famfamfam-flags/dist/png/us.png" width="25" height="15" class="mt-1" />
+                                    <span>English</span>
+                                </a>
+                                <a class="dropdown-item d-flex justify-content-between"
+                                   href="@Url.Action("SetLanguage", "Home", new {
+                                                  culture = "ar-EG",
+                                                  returnUrl = Context.Request.Path + Context.Request.QueryString
+                                              })">
+                                    <img src="~/lib/famfamfam-flags/dist/png/eg.png" width="25" height="15" class="mt-1" />
+                                    <span>Arabic</span>
+                                </a>
+
+
+
+
+
+
+
+
+
+
+
+=============================================
+@{
+var Culture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+}
+
+@if (Culture == "ar-EG")
+
+
+IStringLocalizer<SharedResource> localizer
