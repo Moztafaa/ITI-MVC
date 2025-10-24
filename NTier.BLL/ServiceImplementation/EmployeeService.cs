@@ -57,8 +57,6 @@ public class EmployeeService(
             .FirstOrDefaultAsync(e => e.EmployeeId == employeeVm.EmployeeId);
         if (existingEmployee != null)
         {
-            // Use generic mapper to update only matching properties; nulls are ignored
-            // editEmployeeMapper.MapToExisting(employeeVm, existingEmployee);
             mapper.Map(employeeVm, existingEmployee);
             await employeeRepo.UpdateEmployeeAsync(existingEmployee);
         }

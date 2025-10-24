@@ -10,6 +10,7 @@ public static class ServiceContainer
     public static IServiceCollection AddDALService(this IServiceCollection services)
     {
         services.AddScoped<IEmployeeRepo, EmployeeRepo>();
+        services.AddScoped<IDepartmentRepo, DepartmentRepo>();
         return services;
     }
 }

@@ -16,8 +16,14 @@ public static class ServiceContainer
 
         // Register services
         services.AddScoped<IEmployeeService, EmployeeService>();
+        services.AddScoped<IDepartmentService, DepartmentService>();
 
-        services.AddAutoMapper(typeof(EmployeeMappingProfile));
+        // Register AutoMapper profiles for employee and department mappings
+        services.AddAutoMapper(cfg =>
+        {
+            cfg.AddProfile<EmployeeMappingProfile>();
+            cfg.AddProfile<DepartmentMappingProfile>();
+        });
 
         return services;
     }

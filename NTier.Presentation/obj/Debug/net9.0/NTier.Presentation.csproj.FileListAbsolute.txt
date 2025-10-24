@@ -157,7 +157,6 @@
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/scopedcss/bundle/NTier.Presentation.styles.css
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/scopedcss/projectbundle/NTier.Presentation.bundle.scp.css
-/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/compressed/6197c4xznk-lugek5hnai.gz
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/compressed/knn8cok4l6-61n19gt1b8.gz
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/compressed/u5z70levlu-fr7q2aak1r.gz
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/compressed/fkc3zh7p7g-bqjiyaj88i.gz
@@ -244,3 +243,4 @@
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/NTier.Presentation.Resources.SharedResource.ar-EG.resources
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/ar-EG/NTier.Presentation.resources.cs
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/ar-EG/NTier.Presentation.resources.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/compressed/6197c4xznk-nurk43724g.gz
