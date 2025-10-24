@@ -7,15 +7,20 @@ namespace NTier.DAL.RepositoryImplementation;
 
 public class EmployeeRepo(AppDbContext context) : IEmployeeRepo
 {
-    public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
+    // public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
+    // {
+    //     return await context.Employees.Include(e => e.Department).ToListAsync();
+    // }
+    public IQueryable<Employee> GetAllEmployeesAsync()
     {
-        return await context.Employees.Include(e => e.Department).ToListAsync();
+        return context.Employees.Include(e => e.Department);
     }
 
-    public async Task<Employee?> GetEmployeeByIdAsync(int id)
+    public IQueryable<Employee?> GetEmployeeByIdAsync(int id)
     {
-        return await context.Employees.Include(e => e.Department).FirstOrDefaultAsync(e => e.EmployeeId == id);
+        return context.Employees.Include(e => e.Department).Where(e => e.EmployeeId == id);
     }
+
 
     public async Task AddEmployeeAsync(Employee employee)
     {

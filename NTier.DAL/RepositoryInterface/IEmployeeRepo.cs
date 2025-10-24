@@ -6,8 +6,11 @@ namespace NTier.DAL.RepositoryInterface;
 public interface IEmployeeRepo
 {
     // Define method signatures for employee data operations here
-    Task<IEnumerable<Employee>> GetAllEmployeesAsync();
-    Task<Employee?> GetEmployeeByIdAsync(int id);
+    // Task<IEnumerable<Employee>> GetAllEmployeesAsync();
+    // Task<Employee?> GetEmployeeByIdAsync(int id);
+
+    IQueryable<Employee> GetAllEmployeesAsync();
+    IQueryable<Employee?> GetEmployeeByIdAsync(int id);
     Task AddEmployeeAsync(Employee employee);
     Task UpdateEmployeeAsync(Employee employee);
     Task DeleteEmployeeAsync(int id);

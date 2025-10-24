@@ -1,4 +1,6 @@
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using NTier.BLL.MappingInterface;
 using NTier.BLL.ServiceInterface;
 using NTier.BLL.ViewModels;
@@ -14,17 +16,33 @@ public class EmployeeService(
     // IMapper<EditEmployeeVM, Employee> editEmployeeMapper
     IMapper mapper) : IEmployeeService
 {
+    // public async Task<IEnumerable<EmployeeVM>> GetAllEmployeesAsync()
+    // {
+    //     var employees = await employeeRepo.GetAllEmployeesAsync();
+    //     // return employeeMapper.Map(employees);
+    //     return mapper.Map<IEnumerable<EmployeeVM>>(employees);
+    // }
+
     public async Task<IEnumerable<EmployeeVM>> GetAllEmployeesAsync()
     {
-        var employees = await employeeRepo.GetAllEmployeesAsync();
+        var query = employeeRepo.GetAllEmployeesAsync();
+        return await mapper.ProjectTo<EmployeeVM>(query).ToListAsync();
+        // return await employeeRepo.GetAllEmployeesAsync().ProjectTo<EmployeeVM>(mapper.ConfigurationProvider)
+        //     .ToListAsync();
         // return employeeMapper.Map(employees);
-        return mapper.Map<IEnumerable<EmployeeVM>>(employees);
+        // return mapper.Map<IEnumerable<EmployeeVM>>(employees);
     }
 
     public async Task<EmployeeVM?> GetEmployeeByIdAsync(int id)
     {
-        var employee = await employeeRepo.GetEmployeeByIdAsync(id);
-        return employee != null ? mapper.Map<EmployeeVM>(employee) : null;
+        var query = employeeRepo.GetEmployeeByIdAsync(id);
+
+        return await mapper.ProjectTo<EmployeeVM>(query).FirstOrDefaultAsync();
+        // return await employeeRepo.GetEmployeeByIdAsync(id)
+        //     .ProjectTo<EmployeeVM>(mapper.ConfigurationProvider)
+        //     .FirstOrDefaultAsync();
+
+        // return employee != null ? mapper.Map<EmployeeVM>(employee) : null;
     }
 
     public async Task AddEmployeeAsync(CreateEmployeeVM employeeVm)
@@ -35,7 +53,8 @@ public class EmployeeService(
 
     public async Task UpdateEmployeeAsync(EditEmployeeVM employeeVm)
     {
-        var existingEmployee = await employeeRepo.GetEmployeeByIdAsync(employeeVm.EmployeeId);
+        var existingEmployee = await employeeRepo.GetEmployeeByIdAsync(employeeVm.EmployeeId)
+            .FirstOrDefaultAsync(e => e.EmployeeId == employeeVm.EmployeeId);
         if (existingEmployee != null)
         {
             // Use generic mapper to update only matching properties; nulls are ignored

@@ -9,7 +9,14 @@ public class EmployeeMappingProfile : Profile
     public EmployeeMappingProfile()
     {
         CreateMap<Employee, CreateEmployeeVM>().ReverseMap();
-        CreateMap<Employee, EmployeeVM>().ReverseMap();
+        // CreateMap<Employee, EmployeeVM>().ReverseMap();
         CreateMap<Employee, EditEmployeeVM>().ReverseMap();
+
+        // CreateProjection<Employee, CreateEmployeeVM>();
+        // CreateProjection<CreateEmployeeVM, Employee>();
+        CreateProjection<Employee, EmployeeVM>();
+        CreateProjection<EmployeeVM, Employee>();
+        // CreateProjection<Employee, EditEmployeeVM>();
+        // CreateProjection<EditEmployeeVM, Employee>();
     }
 }
