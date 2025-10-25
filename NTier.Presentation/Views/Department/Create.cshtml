@@ -1,0 +1,28 @@
+@model NTier.BLL.ViewModels.DepartmentViewModels.CreateDepartmentVM
+
+@{
+    ViewBag.Title = "Create Department";
+    Layout = "_Layout";
+}
+
+<h2>Create Department</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-success">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
