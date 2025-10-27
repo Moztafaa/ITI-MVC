@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace NTier.BLL.ViewModels;
 
@@ -11,6 +12,7 @@ public class RegisterDto
 
     [Required(ErrorMessage = "Email can't be blank")]
     [EmailAddress(ErrorMessage = "Email should be in a proper email address format")]
+    [Remote(action: "IsEmailAlreadyRegistered", controller: "Account", ErrorMessage = "Email is already in use")] // Remote validation (ViewFeatures Nuget Package)
     public required string Email { get; set; }
 
 

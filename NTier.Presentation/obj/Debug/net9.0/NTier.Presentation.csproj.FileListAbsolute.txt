@@ -245,3 +245,7 @@
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/ar-EG/NTier.Presentation.resources.dll
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/compressed/6197c4xznk-nurk43724g.gz
 /home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/bin/Debug/net9.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/bin/Debug/net9.0/Newtonsoft.Json.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/bin/Debug/net9.0/Newtonsoft.Json.Bson.dll
+/home/mostafa/Documents/ITI-4Months/MVC/NTier/NTier.Presentation/obj/Debug/net9.0/NTier.Presentation.MvcApplicationPartsAssemblyInfo.cs

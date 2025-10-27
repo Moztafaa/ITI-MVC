@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NTier.BLL.ViewModels;
@@ -6,6 +7,7 @@ using NTier.DAL.IdentityEntities;
 namespace NTier.Presentation.Controllers;
 
 [Route("[controller]/[action]")]
+[AllowAnonymous]
 public class AccountController(
     UserManager<ApplicationUser> _userManager,
     SignInManager<ApplicationUser> _signInManager
@@ -50,4 +52,51 @@ public class AccountController(
             return View(registerDto);
         }
     }
+    [HttpGet]
+    public IActionResult Login()
+    {
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginVM loginVM, string? ReturnUrl)
+    {
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
+            return View(loginVM);
+        }
+
+        var result = await _signInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, false, false);
+
+        if (result.Succeeded)
+        {
+            if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+            {
+                return LocalRedirect(ReturnUrl);
+            }
+            return RedirectToAction("Index", "Employee");
+        }
+        ModelState.AddModelError("Login", "Invalid Login Attempt");
+        return View(loginVM);
+    }
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction(nameof(Login));
+    }
+
+    public async Task<IActionResult> IsEmailAlreadyRegistered(string email)
+    {
+        ApplicationUser? user = await _userManager.FindByEmailAsync(email);
+        if (user == null)
+        {
+            return Json(true);
+        }
+        else
+        {
+            return Json(false);
+        }
+    }
+
+
 }

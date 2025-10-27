@@ -1,4 +1,5 @@
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Localization;
@@ -10,7 +11,7 @@ using NTier.DAL.DI;
 using NTier.DAL.IdentityEntities;
 using NTier.Presentation.Resources;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews()
@@ -19,10 +20,7 @@ builder.Services.AddControllersWithViews()
             factory.Create(typeof(SharedResource)));
 builder.Services.AddBLLServices();
 builder.Services.AddDALService();
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Enable Identity
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
@@ -40,7 +38,12 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     .AddUserStore<UserStore<ApplicationUser, ApplicationRole, AppDbContext, Guid>>()
     .AddRoleStore<RoleStore<ApplicationRole, AppDbContext, Guid>>();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); // enforce authorization policy for all methods
+});
 
+builder.Services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/Login");
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -52,6 +55,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Serve static assets before authentication/authorization checks
+app.UseStaticFiles();
+app.MapStaticAssets();
 
 // Configure Localization Middleware
 CultureInfo[] supportedCultures = new[]
@@ -71,16 +78,14 @@ app.UseRequestLocalization(new RequestLocalizationOptions
         new CookieRequestCultureProvider()
     }
 });
-app.UseAuthentication();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapStaticAssets();
 
 app.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Employee}/{action=Index}/{id?}")
+        pattern: "{controller}/{action}/{id?}")
     .WithStaticAssets();
 
 
