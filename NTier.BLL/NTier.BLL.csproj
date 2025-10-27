@@ -13,11 +13,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\NTier.DAL\NTier.DAL.csproj"/>
+        <ProjectReference Include="..\NTier.DAL\NTier.DAL.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1"/>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
     </ItemGroup>
 
 </Project>

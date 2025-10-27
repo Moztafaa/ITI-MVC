@@ -1,10 +1,13 @@
 using System.Globalization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using NTier.BLL.DI;
 using NTier.DAL.DataBaseContext;
 using NTier.DAL.DI;
+using NTier.DAL.IdentityEntities;
 using NTier.Presentation.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,11 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-    .AddDataAnnotationsLocalization(options =>
-    {
-        options.DataAnnotationLocalizerProvider = (type, factory) =>
-            factory.Create(typeof(SharedResource));
-    });
+    .AddDataAnnotationsLocalization(options => options.DataAnnotationLocalizerProvider = (type, factory) =>
+            factory.Create(typeof(SharedResource)));
 builder.Services.AddBLLServices();
 builder.Services.AddDALService();
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -24,8 +24,24 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+// Enable Identity
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+{
+    options.Password.RequireDigit = false; // numbers
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequiredUniqueChars = 3; // different characters
 
-var app = builder.Build();
+})
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders()
+    .AddUserStore<UserStore<ApplicationUser, ApplicationRole, AppDbContext, Guid>>()
+    .AddRoleStore<RoleStore<ApplicationRole, AppDbContext, Guid>>();
+
+
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -38,7 +54,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Configure Localization Middleware
-var supportedCultures = new[]
+CultureInfo[] supportedCultures = new[]
 {
     new CultureInfo("ar-EG"),
     new CultureInfo("en-US"),
@@ -55,7 +71,7 @@ app.UseRequestLocalization(new RequestLocalizationOptions
         new CookieRequestCultureProvider()
     }
 });
-
+app.UseAuthentication();
 app.UseRouting();
 
 app.UseAuthorization();

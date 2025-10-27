@@ -8,13 +8,13 @@ public class DepartmentRepo(AppDbContext context) : IDepartmentRepo
 {
     public IQueryable<Department> GetAllDepartmentsAsync()
     {
-        var query = context.Departments.AsQueryable();
+        IQueryable<Department> query = context.Departments.AsQueryable();
         return query;
     }
 
     public IQueryable<Department?> GetDepartmentByIdAsync(int id)
     {
-        var query = context.Departments.Where(d => d.DepartmentId == id);
+        IQueryable<Department> query = context.Departments.Where(d => d.DepartmentId == id);
         return query;
     }
 
@@ -32,7 +32,7 @@ public class DepartmentRepo(AppDbContext context) : IDepartmentRepo
 
     public async Task DeleteDepartmentAsync(int id)
     {
-        var department = await context.Departments.FindAsync(id);
+        Department? department = await context.Departments.FindAsync(id);
         if (department != null)
         {
             context.Departments.Remove(department);
