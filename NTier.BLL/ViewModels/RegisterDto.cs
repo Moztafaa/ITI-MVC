@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using NTier.BLL.Enums;
 
 namespace NTier.BLL.ViewModels;
 
@@ -32,4 +33,5 @@ public class RegisterDto
     [Compare("Password", ErrorMessage = "Password and Confirm Password must match")]
     public required string ConfirmPassword { get; set; }
 
+    public UserTypesOptions UserType { get; set; } = UserTypesOptions.User;
 }

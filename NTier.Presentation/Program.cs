@@ -1,4 +1,5 @@
 using System.Globalization;
+using Hangfire;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -22,6 +23,13 @@ builder.Services.AddBLLServices();
 builder.Services.AddDALService();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Configure Hangfire
+builder.Services.AddHangfire(config => config.UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddHangfireServer();
+
+
+
+builder.Services.AddHangfireServer();
 // Enable Identity
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
 {
@@ -38,12 +46,14 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     .AddUserStore<UserStore<ApplicationUser, ApplicationRole, AppDbContext, Guid>>()
     .AddRoleStore<RoleStore<ApplicationRole, AppDbContext, Guid>>();
 
-builder.Services.AddAuthorization(options =>
+builder.Services.AddAuthorization(options => options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
+
+builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); // enforce authorization policy for all methods
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/Login";
 });
 
-builder.Services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/Login");
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -79,14 +89,31 @@ app.UseRequestLocalization(new RequestLocalizationOptions
     }
 });
 app.UseRouting();
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapControllerRoute(
+//         name: "areas",
+//         pattern: "{area:exists}/{controller}/{action}"
+//     );
+//     endpoints.MapControllerRoute(
+//         name: "default",
+//         pattern: "{controller}/{action}/{id?}"
+//     );
+
+// });
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseHangfireDashboard("/hangfire"); // Hangfire Dashboard
 
 app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller}/{action}/{id?}")
-    .WithStaticAssets();
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}"
+    );
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Employee}/{action=Index}/{id?}")
+.WithStaticAssets();
 
 
-app.Run();
+await app.RunAsync();

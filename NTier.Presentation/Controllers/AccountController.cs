@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NTier.BLL.Enums;
 using NTier.BLL.ViewModels;
 using NTier.DAL.IdentityEntities;
 
@@ -10,7 +11,8 @@ namespace NTier.Presentation.Controllers;
 [AllowAnonymous]
 public class AccountController(
     UserManager<ApplicationUser> _userManager,
-    SignInManager<ApplicationUser> _signInManager
+    SignInManager<ApplicationUser> _signInManager,
+    RoleManager<ApplicationRole> _roleManager
 ) : Controller
 {
     // GET: AccountController
@@ -39,6 +41,34 @@ public class AccountController(
         IdentityResult result = await _userManager.CreateAsync(user, registerDto.Password);
         if (result.Succeeded)
         {
+            if (registerDto.UserType == BLL.Enums.UserTypesOptions.Admin)
+            {
+                // create admin role if it doesn't exist
+                if (await _roleManager.FindByNameAsync(UserTypesOptions.Admin.ToString()) is null)
+                {
+                    ApplicationRole applicationRole = new()
+                    {
+                        Name = UserTypesOptions.Admin.ToString()
+                    };
+                    await _roleManager.CreateAsync(applicationRole);
+                }
+                // assign user to Admin role
+                await _userManager.AddToRoleAsync(user, UserTypesOptions.Admin.ToString());
+            }
+            else
+            {
+                // assign user to User role
+
+                if (await _roleManager.FindByNameAsync(UserTypesOptions.User.ToString()) is null)
+                {
+                    ApplicationRole applicationRole = new()
+                    {
+                        Name = UserTypesOptions.User.ToString()
+                    };
+                    await _roleManager.CreateAsync(applicationRole);
+                }
+                await _userManager.AddToRoleAsync(user, UserTypesOptions.User.ToString());
+            }
             await _signInManager.SignInAsync(user, false);
             return RedirectToAction(nameof(EmployeeController.Index), "Employee");
         }

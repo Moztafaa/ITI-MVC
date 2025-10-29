@@ -14,5 +14,11 @@
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore/9.0.10/buildTransitive/net8.0/Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore/9.0.10/buildTransitive/net8.0/Microsoft.EntityFrameworkCore.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.csharp.codestyle/5.0.0-2.final/build/Microsoft.CodeAnalysis.CSharp.CodeStyle.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.csharp.codestyle/5.0.0-2.final/build/Microsoft.CodeAnalysis.CSharp.CodeStyle.props')" />
   </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgSonarAnalyzer_CSharp Condition=" '$(PkgSonarAnalyzer_CSharp)' == '' ">/home/mostafa/.nuget/packages/sonaranalyzer.csharp/10.15.0.120848</PkgSonarAnalyzer_CSharp>
+    <PkgMicrosoft_CodeAnalysis_CSharp_CodeStyle Condition=" '$(PkgMicrosoft_CodeAnalysis_CSharp_CodeStyle)' == '' ">/home/mostafa/.nuget/packages/microsoft.codeanalysis.csharp.codestyle/5.0.0-2.final</PkgMicrosoft_CodeAnalysis_CSharp_CodeStyle>
+    <PkgHangfire_SqlServer Condition=" '$(PkgHangfire_SqlServer)' == '' ">/home/mostafa/.nuget/packages/hangfire.sqlserver/1.8.21</PkgHangfire_SqlServer>
+  </PropertyGroup>
 </Project>

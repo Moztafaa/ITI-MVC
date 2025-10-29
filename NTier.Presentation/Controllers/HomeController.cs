@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Hangfire;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,20 @@ public class HomeController : Controller
 
     public IActionResult Privacy()
     {
+        return View();
+    }
+    public void PrintInConsole()
+    {
+        Console.WriteLine("Hangfire Job Executed at: " + DateTime.Now);
+    }
+    public IActionResult Hang()
+    {
+        System.Console.WriteLine("Hangfire Job Scheduled at: " + DateTime.Now);
+        // BackgroundJob.Enqueue(() => PrintInConsole());
+        // BackgroundJob.Schedule(() => PrintInConsole(), TimeSpan.FromSeconds(10));
+        RecurringJob.AddOrUpdate("PrintInConsoleJob", () => PrintInConsole(), Cron.Minutely);
+        System.Console.WriteLine("Hangfire Job Enqueued at: " + DateTime.Now);
+
         return View();
     }
 
